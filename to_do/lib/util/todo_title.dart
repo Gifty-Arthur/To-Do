@@ -14,18 +14,28 @@ class ToDo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.only(left: 25.0, right: 25, top: 25),
         child: Container(
             padding: EdgeInsets.all(24),
             child: Row(
               children: [
                 //task name
-                Checkbox(value: taskCompleted, onChanged: onChanged),
-                Text(taskName),
+                Checkbox(
+                  value: taskCompleted,
+                  onChanged: onChanged,
+                  activeColor: Colors.black,
+                ),
+                Text(
+                  taskName,
+                  style: TextStyle(
+                      decoration: taskCompleted
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none),
+                ),
               ],
             ),
             decoration: BoxDecoration(
-              color: Colors.yellow,
+              color: Colors.yellow[200],
               borderRadius: BorderRadius.circular(12),
             )));
   }
