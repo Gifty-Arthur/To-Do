@@ -1,41 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/util/todo_title.dart';
 
-import "../constants/colors.dart";
+class Home extends StatefulWidget {
+  const Home({super.key});
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  //list of to do task
+
+  List toDoList = [
+    ['Make tutorial', false],
+    ['Make tutorial', false],
+  ];
+  //checkbox was tapped
+  void checkBoxChanged(bool? value, int index) {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tdBGColor,
+      backgroundColor: Colors.yellow[200],
       appBar: AppBar(
-        backgroundColor: tdBGColor,
-        elevation: 0,
-        title:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Icon(
-            Icons.menu,
-            color: tdBlack,
-            size: 30,
-          ),
-          Container(
-              height: 40,
-              width: 40,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset('assets/images/avatar.jpeg'),
-              ))
-        ]),
+        title: Text('TO DO'),
+        centerTitle: true, // This centers the title in the AppBar
+        backgroundColor: Colors.yellow[400],
       ),
-      body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: TextField(),
-            )
-          ])),
+      body: ListView.builder(
+        itemCount: toDoList.length,
+        itemBuilder: (context, index) {
+          return ToDo(
+            taskName: toDoList[index][0],
+            taskCompleted: toDoList[index][1],
+            onChanged: (value) => checkBoxChanged(value, index),
+          );
+        },
+      ),
     );
   }
 }
