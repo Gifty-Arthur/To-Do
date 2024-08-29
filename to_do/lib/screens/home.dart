@@ -10,6 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //text
+  final _controller = TextEditingController();
   //list of to do task
 
   List toDoList = [
@@ -28,7 +30,9 @@ class _HomeState extends State<Home> {
     showDialog(
       context: context,
       builder: (context) {
-        return DialogBox();
+        return DialogBox(
+          controller: _controller,
+        );
       },
     );
   }
